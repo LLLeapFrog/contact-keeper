@@ -13,6 +13,9 @@ const Navbar = ({ title, icon }) => {
           <Link to='/'>Home</Link>
         </li>
         <li>
+          <Link to='/ContactKeeper'>Contact Keeper</Link>
+        </li>
+        <li>
           <Link to='/about'>About</Link>
         </li>
       </ul>
@@ -26,8 +29,9 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: 'Contact Keeper',
-  icon: 'fas fa-id-card-alt'
+  title: "Thomas Chen's Space",
+  icon: 'far fa-smile-wink'
+  // icon: 'fas fa-id-card-alt'
 };
 
 export default Navbar;
