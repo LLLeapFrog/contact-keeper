@@ -28,6 +28,7 @@ const ContactForm = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    // context需要接受一个返回值
     contactContext.addContact(contact);
     setContact({
       name: '',
