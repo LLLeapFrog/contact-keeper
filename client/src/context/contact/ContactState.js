@@ -36,12 +36,14 @@ const ContactState = props => {
         phone: '333',
         type: 'professional'
       }
-    ]
+    ],
+    current: null,
+    filtered: null
   };
 
   // useReducer参数顺序不能颠倒
   // p1: 所使用的reducer  p2: 初始值
-  // 第一个返回state, 第二个返回dispatch（一个分发函数指向contactReducer, 默认第一个参数为state）
+  // 第一个返回state(其实就是p2的值), 第二个返回dispatch（一个分发函数指向contactReducer, 默认第一个参数为state）
   const [state, dispatch] = useReducer(contactReducer, initialState);
 
   // Add Contact
@@ -57,20 +59,44 @@ const ContactState = props => {
   };
 
   // Set Current Contact
+  const setCurrent = contact => {
+    dispatch({ type: SET_CURRENT, payload: contact });
+  };
+
+  // Clear Current Contact
+  const clearCurrent = () => {
+    dispatch({ type: CLEAR_CURRENT });
+  };
 
   // Update Contact
+  const updateContact = contact => {
+    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  };
 
   // Filter Contacts
+  const filterContacts = text => {
+    dispatch({ type: FILTER_CONTACTS, payload: text });
+  };
 
   // Clear Filter
+  const clearFilter = () => {
+    dispatch({ type: CLEAR_FILTER });
+  };
 
   return (
     // state为component提供context, component调用context（object value）里的properties
     <ContactContext.Provider
       value={{
         contacts: state.contacts,
+        current: state.current,
+        filtered: state.filtered,
         addContact,
-        deleteContact
+        deleteContact,
+        setCurrent,
+        clearCurrent,
+        updateContact,
+        filterContacts,
+        clearFilter
       }}
     >
       {props.children}

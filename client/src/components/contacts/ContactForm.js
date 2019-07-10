@@ -1,10 +1,26 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ContactContext from '../../context/contact/ContactContext';
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
 
-  // useState和ContactState没有关系，要用也是用ContactFromState.js
+  const { addContact, updateContact, clearCurrent, current } = contactContext;
+
+  // The Hook mimics componentDidMount
+  useEffect(() => {
+    if (current !== null) {
+      setContact(current);
+    } else {
+      setContact({
+        name: '',
+        email: '',
+        phone: '',
+        type: 'personal'
+      });
+    }
+  }, [contactContext, current]); //虽然 React 在 DOM 渲染时会 diff 内容，只对改变部分进行修改，而不是整体替换，但却做不到对 Effect 的增量修改识别。因此需要开发者通过 useEffect 的第二个参数告诉 React 用到了哪些外部变量
+
+  // useState和ContactState没有关系，它就是一个Hook
   // 这步用来初始化contact这个object对象
   const [contact, setContact] = useState({
     // initial values of contact form
@@ -19,27 +35,34 @@ const ContactForm = () => {
 
   const onChange = e =>
     // setXXXX has to change each property.
+    // setXXXX directly make a new JSON data, So cannot to assign sth like name = value.
     setContact({
       // '...contact' get (paste) all properties of the object.
       ...contact,
-      // following dynamically overwrite the value of certain key.
+      // following dynamically overwrites the value of a certain key.
       [e.target.name]: e.target.value
     });
 
   const onSubmit = e => {
     e.preventDefault();
-    // context需要接受一个返回值
-    contactContext.addContact(contact);
-    setContact({
-      name: '',
-      email: '',
-      phone: '',
-      type: 'personal'
-    });
+    if (current === null) {
+      // 返回给contactContext一个新的contacts
+      addContact(contact);
+    } else {
+      updateContact(contact);
+    }
+    clearAll();
   };
+
+  const clearAll = () => {
+    clearCurrent();
+  };
+
   return (
     <form onSubmit={onSubmit}>
-      <h2 className='text-primart'>Add Contact</h2>
+      <h2 className='text-primart'>
+        {current ? 'Edit Contact' : 'Add Contact'}
+      </h2>
       <input
         type='text'
         placeholder='Name'
@@ -81,10 +104,17 @@ const ContactForm = () => {
       <div>
         <input
           type='submit'
-          value='Add Contact'
+          value={current ? 'Update Contact' : 'Add Contact'}
           className='btn btn-primary btn-block'
         />
       </div>
+      {current && (
+        <div>
+          <button className='btn btn-light btn-block' onClick={clearAll}>
+            Clear
+          </button>
+        </div>
+      )}
     </form>
   );
 };
