@@ -6,7 +6,7 @@ const ContactForm = () => {
 
   const { addContact, updateContact, clearCurrent, current } = contactContext;
 
-  // The Hook mimics componentDidMount
+  // The Hook mimics componentDidMount and componentDidupdate
   useEffect(() => {
     if (current !== null) {
       setContact(current);
@@ -60,7 +60,7 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className='text-primart'>
+      <h2 className='text-primary'>
         {current ? 'Edit Contact' : 'Add Contact'}
       </h2>
       <input

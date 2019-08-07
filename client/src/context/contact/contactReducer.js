@@ -1,26 +1,34 @@
 import {
+  GET_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_CONTACT,
   FILTER_CONTACTS,
-  CLEAR_FILTER
+  CLEAR_CONTACTS,
+  CLEAR_FILTER,
+  CONTACT_ERROR
 } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
+    case GET_CONTACTS:
+      return {
+        ...state,
+        contacts: action.payload
+      };
     case ADD_CONTACT:
       return {
         ...state,
-        contacts: [...state.contacts, action.payload]
+        contacts: [action.payload, ...state.contacts]
       };
     case UPDATE_CONTACT:
       return {
         ...state,
         // id是contacts从contactContext里实时得到的，再传递给ContactItem，它再set到current里.
         contacts: state.contacts.map(contact =>
-          contact.id === action.payload.id ? action.payload : contact
+          contact._id === action.payload._id ? action.payload : contact
         )
       };
     case DELETE_CONTACT:
@@ -29,7 +37,7 @@ export default (state, action) => {
           ...state,
           contacts: state.contacts.filter(
             // 返回满足条件的对象
-            contact => contact.id !== action.payload
+            contact => contact._id !== action.payload
           )
         };
       } else {
@@ -43,6 +51,14 @@ export default (state, action) => {
           )
         };
       }
+    case CLEAR_CONTACTS:
+      return {
+        ...state,
+        contacts: null,
+        filtered: null,
+        error: null,
+        current: null
+      };
     // return {
     //   ...state,
     //   contacts: state.contacts.filter(
@@ -75,6 +91,11 @@ export default (state, action) => {
       return {
         ...state,
         filtered: null
+      };
+    case CONTACT_ERROR:
+      return {
+        ...state,
+        error: action.payload
       };
     default:
       return state;

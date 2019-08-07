@@ -7,11 +7,17 @@ import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alerts from './components/layout/Alerts';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 import ContactState from './context/contact/ContactState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
+import setAuthToken from './utils/setAuthToken';
 import './App.css';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
   return (
@@ -26,7 +32,7 @@ const App = () => {
                 <Switch>
                   {/* It contains contents going to be changed. */}
                   <Route exact path='/' component={Home} />
-                  <Route
+                  <PrivateRoute
                     exact
                     path='/ContactKeeper'
                     component={ContactKeeper}
