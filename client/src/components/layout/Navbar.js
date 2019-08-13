@@ -49,6 +49,9 @@ const Navbar = ({ title, icon }) => {
           <Link to='/'>Home</Link>
         </li>
         <li>
+          <Link to='/GithubFinder'>Github Finder</Link>
+        </li>
+        <li>
           <Link to='/ContactKeeper'>Contact Keeper</Link>
         </li>
         <li>
