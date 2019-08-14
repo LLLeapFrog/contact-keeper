@@ -5,6 +5,7 @@ import Home from './components/pages/Home';
 import GithubFinder from './components/pages/GithubFinder';
 import User from './components/users/User';
 import ContactKeeper from './components/pages/ContactKeeper';
+import JobFinder from './components/pages/JobFinder';
 import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
@@ -16,6 +17,7 @@ import AuthContext from './context/auth/AuthContext';
 
 import GithubState from './context/github/GithubState';
 import ContactState from './context/contact/ContactState';
+import JobState from './context/job/JobState';
 import AlertState from './context/alert/AlertState';
 import setAuthToken from './utils/setAuthToken';
 import './App.css';
@@ -38,31 +40,38 @@ const App = () => {
   return (
     <GithubState>
       <ContactState>
-        <AlertState>
-          <Router>
-            <Fragment>
-              <Navbar />
-              <div className='container' style={{ marginTop: '1rem' }}>
-                <Alerts />
-                <Switch>
-                  {/* It contains contents going to be changed. */}
-                  <Route exact path='/' component={Home} />
-                  <Route exact path='/GithubFinder' component={GithubFinder} />
-                  <Route exact path='/user/:login' component={User} />
-                  <PrivateRoute
-                    exact
-                    path='/ContactKeeper'
-                    component={ContactKeeper}
-                  />
-                  <Route exact path='/about' component={About} />
-                  <Route exact path='/register' component={Register} />
-                  <Route exact path='/login' component={Login} />
-                  <Route component={NotFound} />
-                </Switch>
-              </div>
-            </Fragment>
-          </Router>
-        </AlertState>
+        <JobState>
+          <AlertState>
+            <Router>
+              <Fragment>
+                <Navbar />
+                <div className='container' style={{ marginTop: '1rem' }}>
+                  <Alerts />
+                  <Switch>
+                    {/* It contains contents going to be changed. */}
+                    <Route exact path='/' component={Home} />
+                    <Route
+                      exact
+                      path='/GithubFinder'
+                      component={GithubFinder}
+                    />
+                    <Route exact path='/user/:login' component={User} />
+                    <PrivateRoute
+                      exact
+                      path='/ContactKeeper'
+                      component={ContactKeeper}
+                    />
+                    <Route exact path='/JobFinder' component={JobFinder} />
+                    <Route exact path='/about' component={About} />
+                    <Route exact path='/register' component={Register} />
+                    <Route exact path='/login' component={Login} />
+                    <Route component={NotFound} />
+                  </Switch>
+                </div>
+              </Fragment>
+            </Router>
+          </AlertState>
+        </JobState>
       </ContactState>
     </GithubState>
   );

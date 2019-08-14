@@ -19,6 +19,9 @@ export const CLEAR_CONTACTS = 'CLEAR_CONTACTS';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
 export const CONTACT_ERROR = 'CONTACT_ERROR';
 
+// Job Types
+export const SEARCH_JOBS = 'SEARCH_JOBS';
+
 // Alert Types
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
