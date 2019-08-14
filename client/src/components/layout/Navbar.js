@@ -18,11 +18,18 @@ const Navbar = ({ title, icon }) => {
 
   const authLinks = (
     <Fragment>
-      <li>Hello! {user && user.name}</li>
-      <li>
-        <a onClick={onLogout} href='#!'>
-          <i className='fas fa-sign-out-alt' />{' '}
-          <span className='hide-sm'>Logout</span>
+      <li
+        className='nav-item'
+        style={{
+          padding: '0.5rem 1rem',
+          color: 'white'
+        }}
+      >
+        Hello! {user && user.name}
+      </li>
+      <li className='nav-item'>
+        <a className='nav-link' onClick={onLogout} href='#!'>
+          <i className='fas fa-sign-out-alt' /> <span>Logout</span>
         </a>
       </li>
     </Fragment>
@@ -30,36 +37,53 @@ const Navbar = ({ title, icon }) => {
 
   const guestLniks = (
     <Fragment>
-      <li>
-        <Link to='/register'>Register</Link>
+      <li className='nav-item'>
+        <Link className='nav-link' to='/register'>
+          Register
+        </Link>
       </li>
-      <li>
-        <Link to='/login'>Login</Link>
+      <li className='nav-item'>
+        <Link className='nav-link' to='/login'>
+          Login
+        </Link>
       </li>
     </Fragment>
   );
 
   return (
-    <div className='navbar bg-primary'>
-      <h1>
+    <nav
+      className='navbar navbar-expand-sm bg-dark navbar-dark'
+      style={{
+        justifyContent: 'space-between'
+      }}
+    >
+      <h4 className='text-white'>
         <i className={icon} /> {title}
-      </h1>
-      <ul>
-        <li>
-          <Link to='/'>Home</Link>
+      </h4>
+      <ul className='navbar-nav'>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/'>
+            Home
+          </Link>
         </li>
-        <li>
-          <Link to='/GithubFinder'>Github Finder</Link>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/GithubFinder'>
+            Github Finder
+          </Link>
         </li>
-        <li>
-          <Link to='/ContactKeeper'>Contact Keeper</Link>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/ContactKeeper'>
+            Contact Keeper
+          </Link>
         </li>
-        <li>
-          <Link to='/about'>About</Link>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/about'>
+            About
+          </Link>
         </li>
         {isAuthenticated ? authLinks : guestLniks}
       </ul>
-    </div>
+    </nav>
   );
 };
 
@@ -69,7 +93,7 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-  title: "Thomas Chen's Space"
+  title: 'Thomas the great'
   // icon: 'far fa-smile-wink'
   // icon: 'fas fa-id-card-alt'
 };

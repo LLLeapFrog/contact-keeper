@@ -33,6 +33,7 @@ const ContactFilter = () => {
         type='text'
         placeholder='Filter Contacts...'
         onChange={onChange}
+        className='form-control mb-4 mt-5'
       />
     </form>
   );

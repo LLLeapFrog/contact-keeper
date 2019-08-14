@@ -60,61 +60,68 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className='text-primary'>
-        {current ? 'Edit Contact' : 'Add Contact'}
-      </h2>
-      <input
-        type='text'
-        placeholder='Name'
-        name='name'
-        value={name}
-        onChange={onChange}
-      />
-      <input
-        type='email'
-        placeholder='Email'
-        name='email'
-        value={email}
-        onChange={onChange}
-      />
-      <input
-        type='text'
-        placeholder='Phone'
-        name='phone'
-        value={phone}
-        onChange={onChange}
-      />
-      <h5>Contact Type</h5>
-      <input
-        type='radio'
-        name='type'
-        value='personal'
-        checked={type === 'personal'}
-        onChange={onChange}
-      />{' '}
-      Personal{' '}
-      <input
-        type='radio'
-        name='type'
-        value='professional'
-        checked={type === 'professional'}
-        onChange={onChange}
-      />{' '}
-      Professional
-      <div>
+      <div className='form-group'>
+        <h3 className='text-dark  text-center p-4'>
+          {current ? 'Edit Contact' : 'Add Contact'}
+        </h3>
         <input
-          type='submit'
-          value={current ? 'Update Contact' : 'Add Contact'}
-          className='btn btn-primary btn-block'
+          type='text'
+          placeholder='Name'
+          name='name'
+          value={name}
+          onChange={onChange}
+          className='form-control mb-3'
         />
-      </div>
-      {current && (
-        <div>
-          <button className='btn btn-light btn-block' onClick={clearAll}>
-            Clear
-          </button>
+        <input
+          type='email'
+          placeholder='Email'
+          name='email'
+          value={email}
+          onChange={onChange}
+          className='form-control mb-3'
+        />
+        <input
+          type='text'
+          placeholder='Phone'
+          name='phone'
+          value={phone}
+          onChange={onChange}
+          className='form-control mb-3'
+        />
+        <h7>Contact Type</h7>
+        <div className='form-group'>
+          <input
+            type='radio'
+            name='type'
+            value='personal'
+            checked={type === 'personal'}
+            onChange={onChange}
+          />{' '}
+          Personal{' '}
+          <input
+            type='radio'
+            name='type'
+            value='professional'
+            checked={type === 'professional'}
+            onChange={onChange}
+          />{' '}
+          Professional
         </div>
-      )}
+        <div>
+          <input
+            type='submit'
+            value={current ? 'Update Contact' : 'Add Contact'}
+            className='btn btn-primary btn-block mt-4 mb-2'
+          />
+        </div>
+        {current && (
+          <div>
+            <button className='btn btn-light btn-block' onClick={clearAll}>
+              Clear
+            </button>
+          </div>
+        )}
+      </div>
     </form>
   );
 };

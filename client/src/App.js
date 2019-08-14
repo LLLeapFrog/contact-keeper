@@ -16,7 +16,6 @@ import AuthContext from './context/auth/AuthContext';
 
 import GithubState from './context/github/GithubState';
 import ContactState from './context/contact/ContactState';
-import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import setAuthToken from './utils/setAuthToken';
 import './App.css';
@@ -43,7 +42,7 @@ const App = () => {
           <Router>
             <Fragment>
               <Navbar />
-              <div className='container'>
+              <div className='container' style={{ marginTop: '1rem' }}>
                 <Alerts />
                 <Switch>
                   {/* It contains contents going to be changed. */}

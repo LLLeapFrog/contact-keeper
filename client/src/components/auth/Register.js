@@ -50,10 +50,14 @@ const Register = props => {
   };
 
   return (
-    <div className='form-container'>
-      <h1>
-        Account <span className='text-parimary'>Register</span>
-      </h1>
+    <div
+      className='form-container'
+      style={{
+        width: '25rem',
+        margin: '0 auto'
+      }}
+    >
+      <h2 className='text-parimary text-center p-4'>Account Register</h2>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
           <label htmlFor='name'>Name</label>
@@ -62,6 +66,7 @@ const Register = props => {
             name='name'
             value={name}
             onChange={onChange}
+            className='form-control'
             required
           />
         </div>
@@ -72,6 +77,7 @@ const Register = props => {
             name='email'
             value={email}
             onChange={onChange}
+            className='form-control'
             required
           />
         </div>
@@ -82,6 +88,7 @@ const Register = props => {
             name='password'
             value={password}
             onChange={onChange}
+            className='form-control'
             required
             minLength='6'
           />
@@ -93,6 +100,7 @@ const Register = props => {
             name='password2'
             value={password2}
             onChange={onChange}
+            className='form-control'
             required
             minLength='6'
           />
@@ -100,7 +108,7 @@ const Register = props => {
         <input
           type='submit'
           value='Register'
-          className='btn btn-primary btn-block'
+          className='btn btn-danger btn-block'
         />
       </form>
     </div>

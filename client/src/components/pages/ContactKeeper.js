@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import Contacts from '../contacts/Contacts';
 import ContactForm from '../contacts/ContactForm';
 import ContactFilter from '../contacts/ContactFilter';
 
 const ContactKeeper = () => {
   return (
-    <div className='grid-2'>
-      <div>
+    <div className='row'>
+      <div className='col-sm-6'>
         <ContactForm />
       </div>
-      <div>
+      <div className='col-sm-6'>
         <ContactFilter />
         <Contacts />
       </div>
