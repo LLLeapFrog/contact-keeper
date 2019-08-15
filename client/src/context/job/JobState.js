@@ -4,7 +4,13 @@ import JobContext from './JobContext';
 import jobReducer from './jobReducer';
 import { SEARCH_JOBS, SET_LOADING } from '../types';
 
-let host = process.env.REACT_APP_HOST;
+let host;
+
+if (process.env.NODE_ENV !== 'production') {
+  host = process.env.REACT_APP_HOST;
+} else {
+  host = process.env.HOST;
+}
 
 const JobState = props => {
   const initialState = {
