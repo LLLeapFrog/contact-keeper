@@ -6,8 +6,6 @@ import { SEARCH_JOBS, SET_LOADING } from '../types';
 
 let host = process.env.REACT_APP_HOST;
 
-console.log(host);
-
 const JobState = props => {
   const initialState = {
     jobs: [],
