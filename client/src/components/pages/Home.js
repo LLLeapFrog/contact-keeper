@@ -13,8 +13,8 @@ const Home = () => {
         games.
       </p>
       <p>
-        <i class='fas fa-exclamation-triangle' /> In order to seperate users'
-        contacts, you have to register an account before using{' '}
+        <i className='fas fa-exclamation-triangle' /> In order to seperate
+        users' contacts, you have to register an account before using{' '}
         <strong>Contact Keeper</strong>.
       </p>
     </div>
