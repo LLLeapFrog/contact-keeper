@@ -11,6 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 } else {
   host = process.env.HOST;
 }
+console.log(host);
 
 const JobState = props => {
   const initialState = {
