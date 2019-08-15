@@ -10,17 +10,8 @@ import {
   GET_REPOS
 } from '../types';
 
-let githubClientId;
-let githubClientSecret;
-
-if (process.env.NODE_ENV !== 'production') {
-  githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
-  githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
-} else {
-  githubClientId = process.env.GITHUB_CLIENT_ID;
-  githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
-}
-console.log(githubClientId);
+let githubClientId = process.env.REACT_APP_GITHUB_CLIENT_ID;
+let githubClientSecret = process.env.REACT_APP_GITHUB_CLIENT_SECRET;
 
 const GithubState = props => {
   const initialState = {
